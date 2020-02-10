@@ -13,7 +13,6 @@
 
 namespace UE4Math
 {
-
 	/**
 	 * A 4D homogeneous vector, 4x1 FLOATs, 16-byte aligned.
 	 */

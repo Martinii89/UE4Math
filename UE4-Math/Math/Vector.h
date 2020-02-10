@@ -13,7 +13,7 @@
 //#include "Internationalization/Internationalization.h"
 #include "Math/NumericLimits.h"
 #include "Math/UnrealMathUtility.h"
-#include "Math/Color.h"
+//#include "Math/Color.h"
 #include "Math/IntPoint.h"
 #include "Math/Vector2D.h"
 #include "Math/IntVector.h"
@@ -25,6 +25,10 @@
 
 namespace UE4Math
 {
+	struct FLinearColor
+	{
+		float	R, G, B, A;
+	};
 	/**
  * A vector in 3-D space composed of components (X, Y, Z) with floating point precision.
  */

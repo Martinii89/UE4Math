@@ -6,6 +6,8 @@
 
 int main()
 {
+    auto q1 = UE4Math::FQuat(0.3, 0.3, 0.3, 0.3);
+    auto q2 = UE4Math::FQuat(0.4, 0.4, 0.4, 0.4);
     std::cout << "Hello World!\n";
 }
 

@@ -43,8 +43,8 @@ namespace UE4Math
 		/** Static lookup table used for FColor -> FLinearColor conversion. sRGB */
 		static float sRGBToLinearTable[256];
 
-		inline FLinearColor() {}
-		inline explicit FLinearColor(EForceInit)
+		FLinearColor() {}
+		explicit FLinearColor(EForceInit)
 			: R(0), G(0), B(0), A(0)
 		{}
 		constexpr inline FLinearColor(float InR, float InG, float InB, float InA = 1.0f) : R(InR), G(InG), B(InB), A(InA) {}

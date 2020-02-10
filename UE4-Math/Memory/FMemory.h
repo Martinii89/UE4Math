@@ -2,6 +2,8 @@
 #include <wchar.h>
 #include <string.h>
 #include <stdint.h>
+#include <stdlib.h> 
+#include <malloc.h>.
 
 namespace UE4Math
 {
@@ -144,12 +146,12 @@ namespace UE4Math
 		//
 		static inline void* SystemMalloc(size_t Size)
 		{
-			return ::malloc(Size);
+			return malloc(Size);
 		}
 
 		static inline void SystemFree(void* Ptr)
 		{
-			::free(Ptr);
+			free(Ptr);
 		}
 
 		//

@@ -378,7 +378,7 @@ namespace UE4Math
 	public:
 
 		// Variables.
-		MS_ALIGN(16) float M[NumRows][NumColumns] GCC_ALIGN(16);
+		float M[NumRows][NumColumns];
 
 		// Constructor
 		TMatrix();

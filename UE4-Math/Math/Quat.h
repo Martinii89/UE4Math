@@ -985,7 +985,7 @@ namespace UE4Math
 
 	inline FQuat FQuat::Inverse() const
 	{
-		checkSlow(IsNormalized());
+		//checkSlow(IsNormalized());
 
 		return FQuat(-X, -Y, -Z, W);
 	}

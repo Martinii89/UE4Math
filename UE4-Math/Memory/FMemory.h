@@ -46,7 +46,7 @@ namespace UE4Math
 		template< class T >
 		static inline void Memset(T& Src, uint8_t ValueToSet)
 		{
-			static_assert(!TIsPointer<T>::Value, "For pointers use the three parameters function");
+			//static_assert(!TIsPointer<T>::Value, "For pointers use the three parameters function");
 			Memset(&Src, ValueToSet, sizeof(T));
 		}
 
@@ -58,7 +58,7 @@ namespace UE4Math
 		template< class T >
 		static inline void Memzero(T& Src)
 		{
-			static_assert(!TIsPointer<T>::Value, "For pointers use the two parameters function");
+			//static_assert(!TIsPointer<T>::Value, "For pointers use the two parameters function");
 			Memzero(&Src, sizeof(T));
 		}
 
@@ -70,7 +70,7 @@ namespace UE4Math
 		template< class T >
 		static inline void Memcpy(T& Dest, const T& Src)
 		{
-			static_assert(!TIsPointer<T>::Value, "For pointers use the three parameters function");
+			//static_assert(!TIsPointer<T>::Value, "For pointers use the three parameters function");
 			Memcpy(&Dest, &Src, sizeof(T));
 		}
 

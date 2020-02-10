@@ -9,6 +9,7 @@
 #include "Misc/CoreMiscDefines.h"
 #include "Windows/WindowsPlatformMath.h"
 #include <vector>
+#include <string>
 
 namespace UE4Math
 {

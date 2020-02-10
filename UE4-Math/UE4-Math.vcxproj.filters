@@ -83,5 +83,11 @@
     <ClInclude Include="Math\NumericLimits.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="Math\UnrealMathVectorCommon.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\UnrealMathVectorConstants.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

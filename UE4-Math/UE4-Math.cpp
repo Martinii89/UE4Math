@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include "Math/Quat.h"
 
 int main()
 {

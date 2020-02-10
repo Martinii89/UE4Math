@@ -559,51 +559,51 @@ namespace UE4Math
 		* @param	Optional pointer for returning the index of the minimum element, if multiple minimum elements the first index is returned
 		* @return	The min value found in the array or default value if the array was empty
 		*/
-		template< class T >
-		static inline T Min(const std::vector<T>& Values, int32_t* MinIndex = NULL)
-		{
-			auto largest = std::max_element(Values.begin(), Values.end());
-			if (largest == Values.end()) {
-				if (MinIndex){
-					*MinIndex = nullptr;
-				}
-				return T();
-			}
-			else {
-				if (MinIndex) {
-					MinIndex = std::distance(Values.begin(), largest);
-				}
-				return *largest;
-			}
+		//template< class T >
+		//static inline T Min(const std::vector<T>& Values, int32_t* MinIndex = NULL)
+		//{
+		//	auto largest = std::max_element(Values.begin(), Values.end());
+		//	if (largest == Values.end()) {
+		//		if (MinIndex != nullptr){
+		//			*MinIndex = nullptr;
+		//		}
+		//		return T();
+		//	}
+		//	else {
+		//		if (MinIndex) {
+		//			MinIndex = std::distance(Values.begin(), largest);
+		//		}
+		//		return *largest;
+		//	}
 
 
-			//if (Values.Num() == 0)
-			//{
-			//	if (MinIndex)
-			//	{
-			//		*MinIndex = INDEX_NONE;
-			//	}
-			//	return T();
-			//}
+		//	//if (Values.Num() == 0)
+		//	//{
+		//	//	if (MinIndex)
+		//	//	{
+		//	//		*MinIndex = INDEX_NONE;
+		//	//	}
+		//	//	return T();
+		//	//}
 
-			//T CurMin = Values[0];
-			//int32_t CurMinIndex = 0;
-			//for (int32_t v = 1; v < Values.Num(); ++v)
-			//{
-			//	const T Value = Values[v];
-			//	if (Value < CurMin)
-			//	{
-			//		CurMin = Value;
-			//		CurMinIndex = v;
-			//	}
-			//}
+		//	//T CurMin = Values[0];
+		//	//int32_t CurMinIndex = 0;
+		//	//for (int32_t v = 1; v < Values.Num(); ++v)
+		//	//{
+		//	//	const T Value = Values[v];
+		//	//	if (Value < CurMin)
+		//	//	{
+		//	//		CurMin = Value;
+		//	//		CurMinIndex = v;
+		//	//	}
+		//	//}
 
-			//if (MinIndex)
-			//{
-			//	*MinIndex = CurMinIndex;
-			//}
-			//return CurMin;
-		}
+		//	//if (MinIndex)
+		//	//{
+		//	//	*MinIndex = CurMinIndex;
+		//	//}
+		//	//return CurMin;
+		//}
 
 		/**
 		* Max of Array
@@ -611,49 +611,49 @@ namespace UE4Math
 		* @param	Optional pointer for returning the index of the maximum element, if multiple maximum elements the first index is returned
 		* @return	The max value found in the array or default value if the array was empty
 		*/
-		template< class T >
-		static inline T Max(const std::vector<T>& Values, int32_t* MaxIndex = NULL)
-		{
-			auto smallest = std::min_element(Values.begin(), Values.end());
-			if (smallest == Values.end()) {
-				if (MinIndex){
-					*MinIndex = nullptr;
-				}
-				return T();
-			}
-			else {
-				if (MinIndex) {
-					MinIndex = std::distance(Values.begin(), largest);
-				}
-				return *largest;
-			}
-			//if (Values.Num() == 0)
-			//{
-			//	if (MaxIndex)
-			//	{
-			//		*MaxIndex = INDEX_NONE;
-			//	}
-			//	return T();
-			//}
+		//template< class T >
+		//static inline T Max(const std::vector<T>& Values, int32_t* MaxIndex = NULL)
+		//{
+		//	auto smallest = std::min_element(Values.begin(), Values.end());
+		//	if (smallest == Values.end()) {
+		//		if (MinIndex){
+		//			*MinIndex = nullptr;
+		//		}
+		//		return T();
+		//	}
+		//	else {
+		//		if (MinIndex) {
+		//			MinIndex = std::distance(Values.begin(), largest);
+		//		}
+		//		return *largest;
+		//	}
+		//	//if (Values.Num() == 0)
+		//	//{
+		//	//	if (MaxIndex)
+		//	//	{
+		//	//		*MaxIndex = INDEX_NONE;
+		//	//	}
+		//	//	return T();
+		//	//}
 
-			//T CurMax = Values[0];
-			//int32_t CurMaxIndex = 0;
-			//for (int32_t v = 1; v < Values.Num(); ++v)
-			//{
-			//	const T Value = Values[v];
-			//	if (CurMax < Value)
-			//	{
-			//		CurMax = Value;
-			//		CurMaxIndex = v;
-			//	}
-			//}
+		//	//T CurMax = Values[0];
+		//	//int32_t CurMaxIndex = 0;
+		//	//for (int32_t v = 1; v < Values.Num(); ++v)
+		//	//{
+		//	//	const T Value = Values[v];
+		//	//	if (CurMax < Value)
+		//	//	{
+		//	//		CurMax = Value;
+		//	//		CurMaxIndex = v;
+		//	//	}
+		//	//}
 
-			//if (MaxIndex)
-			//{
-			//	*MaxIndex = CurMaxIndex;
-			//}
-			//return CurMax;
-		}
+		//	//if (MaxIndex)
+		//	//{
+		//	//	*MaxIndex = CurMaxIndex;
+		//	//}
+		//	//return CurMax;
+		//}
 
 		static inline int32_t CountBits(uint64_t Bits)
 		{

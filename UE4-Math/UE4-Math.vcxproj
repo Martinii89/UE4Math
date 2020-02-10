@@ -162,6 +162,8 @@
     <ClInclude Include="Math\Quat.h" />
     <ClInclude Include="Math\Rotator.h" />
     <ClInclude Include="Math\UnrealMathUtility.h" />
+    <ClInclude Include="Math\UnrealMathVectorCommon.h" />
+    <ClInclude Include="Math\UnrealMathVectorConstants.h" />
     <ClInclude Include="Math\Vector.h" />
     <ClInclude Include="Math\Vector2D.h" />
     <ClInclude Include="Math\Vector2DHalf.h" />

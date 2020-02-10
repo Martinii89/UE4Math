@@ -787,14 +787,14 @@ namespace UE4Math
 
 	inline float& FVector2D::operator[](int32 Index)
 	{
-		check(Index >= 0 && Index < 2);
+		//check(Index >= 0 && Index < 2);
 		return ((Index == 0) ? X : Y);
 	}
 
 
 	inline float FVector2D::operator[](int32 Index) const
 	{
-		check(Index >= 0 && Index < 2);
+		//check(Index >= 0 && Index < 2);
 		return ((Index == 0) ? X : Y);
 	}
 
@@ -949,20 +949,12 @@ namespace UE4Math
 	}
 
 
-	inline FString FVector2D::ToString() const
+	inline std::string FVector2D::ToString() const
 	{
-		return FString::Printf(TEXT("X=%3.3f Y=%3.3f"), X, Y);
-	}
-
-
-	inline bool FVector2D::InitFromString(const FString& InSourceString)
-	{
-		X = Y = 0;
-
-		// The initialization is only successful if the X and Y values can all be parsed from the string
-		const bool bSuccessful = FParse::Value(*InSourceString, TEXT("X="), X) && FParse::Value(*InSourceString, TEXT("Y="), Y);
-
-		return bSuccessful;
+		char stemp[200] = "";
+		snprintf(stemp, 200, "X=%3.3f Y=%3.3f", X, Y);
+		return std::string(stemp);
+		//return FString::Printf(TEXT("X=%3.3f Y=%3.3f"), X, Y);
 	}
 
 	/* FMath inline functions

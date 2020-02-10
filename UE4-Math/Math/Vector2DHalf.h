@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "CoreTypes.h"
-#include "Containers/UnrealString.h"
+//#include "CoreTypes.h"
+//#include "Containers/UnrealString.h"
 #include "Math/Vector2D.h"
 #include "Math/Float16.h"
 

@@ -27,6 +27,9 @@
     <ClCompile Include="UE4-Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Math\UnrealMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\Matrix.h">
@@ -87,6 +90,24 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\UnrealMathVectorConstants.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\UnrealMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\RotationMatrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\RotationTranslationMatrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\RotationAboutPointMatrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\QuatRotationTranslationMatrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Box.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>

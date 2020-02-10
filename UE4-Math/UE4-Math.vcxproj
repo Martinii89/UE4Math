@@ -148,11 +148,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Math\UnrealMath.cpp" />
     <ClCompile Include="UE4-Math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GenericPlatform\GenericPlatformMath.h" />
     <ClInclude Include="Math\Axis.h" />
+    <ClInclude Include="Math\Box.h" />
     <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Math\IntPoint.h" />
     <ClInclude Include="Math\IntVector.h" />
@@ -160,7 +162,12 @@
     <ClInclude Include="Math\NumericLimits.h" />
     <ClInclude Include="Math\Plane.h" />
     <ClInclude Include="Math\Quat.h" />
+    <ClInclude Include="Math\QuatRotationTranslationMatrix.h" />
+    <ClInclude Include="Math\RotationAboutPointMatrix.h" />
+    <ClInclude Include="Math\RotationMatrix.h" />
+    <ClInclude Include="Math\RotationTranslationMatrix.h" />
     <ClInclude Include="Math\Rotator.h" />
+    <ClInclude Include="Math\UnrealMath.h" />
     <ClInclude Include="Math\UnrealMathUtility.h" />
     <ClInclude Include="Math\UnrealMathVectorCommon.h" />
     <ClInclude Include="Math\UnrealMathVectorConstants.h" />

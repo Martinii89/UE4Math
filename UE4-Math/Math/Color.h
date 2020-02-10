@@ -32,10 +32,7 @@ namespace UE4Math
 	 */
 	struct FLinearColor
 	{
-		float	R,
-			G,
-			B,
-			A;
+		float	R,G,B,A;
 
 		/** Static lookup table used for FColor -> FLinearColor conversion. Pow(2.2) */
 		static float Pow22OneOver255Table[256];
@@ -43,11 +40,11 @@ namespace UE4Math
 		/** Static lookup table used for FColor -> FLinearColor conversion. sRGB */
 		static float sRGBToLinearTable[256];
 
-		FLinearColor() {}
-		explicit FLinearColor(EForceInit)
+		inline FLinearColor() {}
+		inline explicit FLinearColor(EForceInit)
 			: R(0), G(0), B(0), A(0)
-		{}
-		constexpr inline FLinearColor(float InR, float InG, float InB, float InA = 1.0f) : R(InR), G(InG), B(InB), A(InA) {}
+		{};
+		constexpr inline FLinearColor(float InR, float InG, float InB, float InA = 1.0f) : R(InR), G(InG), B(InB), A(InA) {};
 
 		/**
 		 * Converts an FColor which is assumed to be in sRGB space, into linear color space.

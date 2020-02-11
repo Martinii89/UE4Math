@@ -9,11 +9,11 @@
 #include "Math/UnrealMathUtility.h"
 //#include "Containers/UnrealString.h"
 //#include "Misc/Parse.h"
-#include "Math/Color.h"
+//#include "Math/Color.h"
 #include "Math/IntPoint.h"
 //#include "Logging/LogMacros.h"
 #include "Math/Vector2D.h"
-#include "Misc/ByteSwap.h"
+//#include "Misc/ByteSwap.h"
 //#include "Internationalization/Text.h"
 //#include "Internationalization/Internationalization.h"
 #include "Math/IntVector.h"
@@ -25,10 +25,6 @@
 
 namespace UE4Math
 {
-	//struct FLinearColor
-	//{
-	//	float	R, G, B, A;
-	//};
 	/**
  * A vector in 3-D space composed of components (X, Y, Z) with floating point precision.
  */
@@ -1192,11 +1188,11 @@ namespace UE4Math
 		DiagnosticCheckNaN();
 	}
 
-	inline FVector::FVector(const FLinearColor& InColor)
-		: X(InColor.R), Y(InColor.G), Z(InColor.B)
-	{
-		DiagnosticCheckNaN();
-	}
+	//inline FVector::FVector(const FLinearColor& InColor)
+	//	: X(InColor.R), Y(InColor.G), Z(InColor.B)
+	//{
+	//	DiagnosticCheckNaN();
+	//}
 
 	inline FVector::FVector(FIntVector InVector)
 		: X(InVector.X), Y(InVector.Y), Z(InVector.Z)

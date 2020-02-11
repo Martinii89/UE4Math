@@ -6,6 +6,8 @@
 
 namespace UE4Math
 {
+	enum { INDEX_NONE = -1 };
+
 	enum EForceInit
 	{
 		ForceInit,

@@ -977,7 +977,7 @@ namespace UE4Math
 		// Return path length as experienced in sequence (linear interpolation between points).
 		return Length;
 	}
-
+	/*
 	float FLinearColor::EvaluateBezier(const FLinearColor* ControlPoints, int32 NumPoints, std::vector<FLinearColor>& OutPoints)
 	{
 		//check(ControlPoints);
@@ -1008,7 +1008,7 @@ namespace UE4Math
 		float Length = 0.f;
 
 		FLinearColor OldPos = P0;
-		OutPoints.Add(P0);	// first point on the curve is always P0.
+		OutPoints.push_back(P0);	// first point on the curve is always P0.
 
 		for (int32 i = 1; i < NumPoints; ++i)
 		{
@@ -1022,13 +1022,13 @@ namespace UE4Math
 			Length += FLinearColor::Dist(S, OldPos);
 			OldPos = S;
 
-			OutPoints.Add(S);
+			OutPoints.push_back(S);
 		}
 
 		// Return path length as experienced in sequence (linear interpolation between points).
 		return Length;
 	}
-
+	*/
 
 
 	FQuat FQuat::Slerp_NotNormalized(const FQuat& Quat1, const FQuat& Quat2, float Slerp)
@@ -1248,6 +1248,7 @@ namespace UE4Math
 		CurrentMax.v2.Z = FMath::Max(CurrentMax.v2.Z, OutMax);
 	}
 
+	/*
 	void  CurveLinearColorFindIntervalBounds(const FInterpCurvePoint<FLinearColor>& Start, const FInterpCurvePoint<FLinearColor>& End, FLinearColor& CurrentMin, FLinearColor& CurrentMax)
 	{
 		const bool bIsCurve = Start.IsCurveKey();
@@ -1270,6 +1271,7 @@ namespace UE4Math
 		CurrentMin.A = FMath::Min(CurrentMin.A, OutMin);
 		CurrentMax.A = FMath::Max(CurrentMax.A, OutMax);
 	}
+	*/
 
 	float FMath::PointDistToLine(const FVector& Point, const FVector& Direction, const FVector& Origin, FVector& OutClosestPoint)
 	{
@@ -1676,14 +1678,14 @@ namespace UE4Math
 		// find diagonal most closely aligned with normal of plane
 		FVector Vmin, Vmax;
 
-		// Bypass the slow FVector[] operator. Not RESTRICT because it won't update Vmin, Vmax
+		// Bypass the slow FVector[] operator. Not __restrict because it won't update Vmin, Vmax
 		float* VminPtr = (float*)&Vmin;
 		float* VmaxPtr = (float*)&Vmax;
 
-		// Use restrict to get better instruction scheduling and to bypass the slow FVector[] operator
-		const float* RESTRICT AABBMinPtr = (const float*)&AABB.Min;
-		const float* RESTRICT AABBMaxPtr = (const float*)&AABB.Max;
-		const float* RESTRICT PlanePtr = (const float*)&P;
+		// Use __restrict to get better instruction scheduling and to bypass the slow FVector[] operator
+		const float* __restrict AABBMinPtr = (const float*)&AABB.Min;
+		const float* __restrict AABBMaxPtr = (const float*)&AABB.Max;
+		const float* __restrict PlanePtr = (const float*)&P;
 
 		for (int32 Idx = 0; Idx < 3; ++Idx)
 		{
@@ -1793,7 +1795,7 @@ namespace UE4Math
 		case 6: //110 point C
 			return C;
 		default:
-			UE_LOG(LogUnrealMath, Log, TEXT("Impossible result in FMath::ClosestPointOnTriangleToPoint"));
+			//UE_LOG(LogUnrealMath, Log, TEXT("Impossible result in FMath::ClosestPointOnTriangleToPoint"));
 			break;
 		}
 
@@ -1816,7 +1818,7 @@ namespace UE4Math
 		// Check the size of the triangle is reasonable (TriNorm.Size() will be twice the triangle area)
 		if (TriNorm.SizeSquared() <= SMALL_NUMBER)
 		{
-			UE_LOG(LogUnrealMath, Warning, TEXT("Small triangle detected in FMath::ComputeBaryCentric2D(), can't compute valid barycentric coordinate."));
+			//UE_LOG(LogUnrealMath, Warning, TEXT("Small triangle detected in FMath::ComputeBaryCentric2D(), can't compute valid barycentric coordinate."));
 			return FVector(0.0f, 0.0f, 0.0f);
 		}
 
@@ -1847,7 +1849,7 @@ namespace UE4Math
 		const FVector B3 = (D - A);
 
 		//check co-planarity of A,B,C,D
-		check(fabsf(B1 | (B2 ^ B3)) > SMALL_NUMBER && "Coplanar points in FMath::ComputeBaryCentric3D()");
+		//check(fabsf(B1 | (B2 ^ B3)) > SMALL_NUMBER && "Coplanar points in FMath::ComputeBaryCentric3D()");
 
 		//Transform Point into this new space
 		const FVector V = (Point - A);
@@ -1867,7 +1869,7 @@ namespace UE4Math
 	FVector FMath::ClosestPointOnTetrahedronToPoint(const FVector& Point, const FVector& A, const FVector& B, const FVector& C, const FVector& D)
 	{
 		//Check for coplanarity of all four points
-		check(fabsf((C - A) | ((B - A) ^ (D - C))) > 0.0001f && "Coplanar points in FMath::ComputeBaryCentric3D()");
+		//check(fabsf((C - A) | ((B - A) ^ (D - C))) > 0.0001f && "Coplanar points in FMath::ComputeBaryCentric3D()");
 
 		//http://osdir.com/ml/games.devel.algorithms/2003-02/msg00394.html
 		//     D
@@ -1944,7 +1946,7 @@ namespace UE4Math
 		case 14: //1110 Point	B
 			return Pt2;
 		default: //impossible (1111)
-			UE_LOG(LogUnrealMath, Log, TEXT("FMath::ClosestPointOnTetrahedronToPoint() : impossible result"));
+			//UE_LOG(LogUnrealMath, Log, TEXT("FMath::ClosestPointOnTetrahedronToPoint() : impossible result"));
 			break;
 		}
 
@@ -1980,7 +1982,7 @@ namespace UE4Math
 
 	bool FMath::GetDistanceWithinConeSegment(FVector Point, FVector ConeStartPoint, FVector ConeLine, float RadiusAtStart, float RadiusAtEnd, float& PercentageOut)
 	{
-		check(RadiusAtStart >= 0.0f && RadiusAtEnd >= 0.0f && ConeLine.SizeSquared() > 0);
+		//check(RadiusAtStart >= 0.0f && RadiusAtEnd >= 0.0f && ConeLine.SizeSquared() > 0);
 		// -- First we'll draw out a line from the ConeStartPoint down the ConeLine. We'll find the closest point on that line to Point.
 		//    If we're outside the max distance, or behind the StartPoint, we bail out as that means we've no chance to be in the cone.
 
@@ -2014,10 +2016,10 @@ namespace UE4Math
 		return true;
 	}
 
-	bool FMath::PointsAreCoplanar(const TArray<FVector>& Points, const float Tolerance)
+	bool FMath::PointsAreCoplanar(const std::vector<FVector>& Points, const float Tolerance)
 	{
 		//less than 4 points = coplanar
-		if (Points.Num() < 4)
+		if (Points.size() < 4)
 		{
 			return true;
 		}
@@ -2025,7 +2027,7 @@ namespace UE4Math
 		//Get the Normal for plane determined by first 3 points
 		const FVector Normal = FVector::CrossProduct(Points[2] - Points[0], Points[1] - Points[0]).GetSafeNormal();
 
-		const int32 Total = Points.Num();
+		const int32 Total = Points.size();
 		for (int32 v = 3; v < Total; v++)
 		{
 			//Abs of PointPlaneDist, dist should be 0
@@ -2279,6 +2281,7 @@ namespace UE4Math
 	}
 
 	/** Interpolate Linear Color from Current to Target. Scaled by distance to Target, so it has a strong start speed and ease out. */
+	/*
 	FLinearColor FMath::CInterpTo(const FLinearColor& Current, const FLinearColor& Target, float DeltaTime, float InterpSpeed)
 	{
 		// If no interp speed, jump to target value
@@ -2301,6 +2304,7 @@ namespace UE4Math
 
 		return Current + DeltaMove;
 	}
+	*/
 
 	FQuat FMath::QInterpConstantTo(const FQuat& Current, const FQuat& Target, float DeltaTime, float InterpSpeed)
 	{
@@ -2437,7 +2441,7 @@ namespace UE4Math
 			float Theta = 2.f * PI * RandU;
 			float Phi = FMath::Acos((2.f * RandV) - 1.f);
 
-			// restrict phi to [0, ConeHalfAngleRad]
+			// __restrict phi to [0, ConeHalfAngleRad]
 			// this gives an even distribution of points on the surface of the cone
 			// centered at the origin, pointing upward (z), with the desired angle
 			Phi = FMath::Fmod(Phi, ConeHalfAngleRad);
@@ -2474,7 +2478,7 @@ namespace UE4Math
 			float Theta = 2.f * PI * RandU;
 			float Phi = FMath::Acos((2.f * RandV) - 1.f);
 
-			// restrict phi to [0, ConeHalfAngleRad]
+			// __restrict phi to [0, ConeHalfAngleRad]
 			// where ConeHalfAngleRad is now a function of Theta
 			// (specifically, radius of an ellipse as a function of angle)
 			// function is ellipse function (x/a)^2 + (y/b)^2 = 1, converted to polar coords
@@ -2540,30 +2544,30 @@ namespace UE4Math
 		int32 ClusterSize;
 	};
 
-	void FVector::GenerateClusterCenters(TArray<FVector>& Clusters, const TArray<FVector>& Points, int32 NumIterations, int32 NumConnectionsToBeValid)
+	void FVector::GenerateClusterCenters(std::vector<FVector>& Clusters, const std::vector<FVector>& Points, int32 NumIterations, int32 NumConnectionsToBeValid)
 	{
 		// Check we have >0 points and clusters
-		if (Points.Num() == 0 || Clusters.Num() == 0)
+		if (Points.size() == 0 || Clusters.size() == 0)
 		{
 			return;
 		}
 
 		// Temp storage for each cluster that mirrors the order of the passed in Clusters array
-		TArray<FClusterMovedHereToMakeCompile> ClusterData;
-		ClusterData.AddZeroed(Clusters.Num());
+		std::vector<FClusterMovedHereToMakeCompile> ClusterData(Clusters.size());
+		//ClusterData.AddZeroed(Clusters.Num());
 
 		// Then iterate
 		for (int32 ItCount = 0; ItCount < NumIterations; ItCount++)
 		{
 			// Classify each point - find closest cluster center
-			for (int32 i = 0; i < Points.Num(); i++)
+			for (int32 i = 0; i < Points.size(); i++)
 			{
 				const FVector& Pos = Points[i];
 
 				// Iterate over all clusters to find closes one
 				int32 NearestClusterIndex = INDEX_NONE;
 				float NearestClusterDistSqr = BIG_NUMBER;
-				for (int32 j = 0; j < Clusters.Num(); j++)
+				for (int32 j = 0; j < Clusters.size(); j++)
 				{
 					const float DistSqr = (Pos - Clusters[j]).SizeSquared();
 					if (DistSqr < NearestClusterDistSqr)
@@ -2581,7 +2585,7 @@ namespace UE4Math
 			}
 
 			// All points classified - update cluster center as average of membership
-			for (int32 i = 0; i < Clusters.Num(); i++)
+			for (int32 i = 0; i < Clusters.size(); i++)
 			{
 				if (ClusterData[i].ClusterSize > 0)
 				{
@@ -2591,11 +2595,19 @@ namespace UE4Math
 		}
 
 		// so now after we have possible cluster centers we want to remove the ones that are outliers and not part of the main cluster
-		for (int32 i = 0; i < ClusterData.Num(); i++)
+		//for (int32 i = 0; i < ClusterData.size(); i++)
+		//{
+		//	if (ClusterData[i].ClusterSize < NumConnectionsToBeValid)
+		//	{
+		//		Clusters.RemoveAt(i);
+		//	}
+		//}
+		// This should do the same as above. looping in reverse should make this safe for stl vectors
+		for (int i = ClusterData.size() - 1; i >= 0; i--)
 		{
 			if (ClusterData[i].ClusterSize < NumConnectionsToBeValid)
 			{
-				Clusters.RemoveAt(i);
+				Clusters.erase(Clusters.begin() + i);
 			}
 		}
 	}
@@ -2724,20 +2736,21 @@ namespace UE4Math
 		}
 	}
 
-	FString FMath::FormatIntToHumanReadable(int32 Val)
+	std::string FMath::FormatIntToHumanReadable(int32 Val)
 	{
-		FString Src = *FString::Printf(TEXT("%i"), Val);
-		FString Dst;
+		return std::to_string(Val);
+		//FString Src = *FString::Printf(TEXT("%i"), Val);
+		//FString Dst;
 
-		while (Src.Len() > 3 && Src[Src.Len() - 4] != TEXT('-'))
-		{
-			Dst = FString::Printf(TEXT(",%s%s"), *Src.Right(3), *Dst);
-			Src = Src.Left(Src.Len() - 3);
-		}
+		//while (Src.Len() > 3 && Src[Src.Len() - 4] != TEXT('-'))
+		//{
+		//	Dst = FString::Printf(TEXT(",%s%s"), *Src.Right(3), *Dst);
+		//	Src = Src.Left(Src.Len() - 3);
+		//}
 
-		Dst = Src + Dst;
+		//Dst = Src + Dst;
 
-		return Dst;
+		//return Dst;
 	}
 
 	bool FMath::MemoryTest(void* BaseAddress, uint32 NumBytes)
@@ -2763,7 +2776,7 @@ namespace UE4Math
 			{
 				if (*Ptr != TestWords[TestIndex])
 				{
-					FPlatformMisc::LowLevelOutputDebugStringf(TEXT("Failed memory test at 0x%08x, wrote: 0x%08x, read: 0x%08x\n"), Ptr, TestWords[TestIndex], *Ptr);
+					//FPlatformMisc::LowLevelOutputDebugStringf(TEXT("Failed memory test at 0x%08x, wrote: 0x%08x, read: 0x%08x\n"), Ptr, TestWords[TestIndex], *Ptr);
 					bSucceeded = false;
 				}
 				*Ptr = ~TestWords[TestIndex];
@@ -2777,7 +2790,7 @@ namespace UE4Math
 				Ptr--;
 				if (*Ptr != ~TestWords[TestIndex])
 				{
-					FPlatformMisc::LowLevelOutputDebugStringf(TEXT("Failed memory test at 0x%08x, wrote: 0x%08x, read: 0x%08x\n"), Ptr, ~TestWords[TestIndex], *Ptr);
+					//FPlatformMisc::LowLevelOutputDebugStringf(TEXT("Failed memory test at 0x%08x, wrote: 0x%08x, read: 0x%08x\n"), Ptr, ~TestWords[TestIndex], *Ptr);
 					bSucceeded = false;
 				}
 				*Ptr = TestWords[TestIndex];
@@ -2794,50 +2807,51 @@ namespace UE4Math
 	 * @param	Value	The string to convert.
 	 * @return			The converted value.
 	 */
-	float Val(const FString& Value)
-	{
-		float RetValue = 0;
+	//float Val(const std::string& Value)
+	//{
+	//	float RetValue = 0;
 
-		for (int32 x = 0; x < Value.Len(); x++)
-		{
-			FString Char = Value.Mid(x, 1);
+	//	for (int32 x = 0; x < Value.Len(); x++)
+	//	{
+	//		std::string Char = Value.Mid(x, 1);
 
-			if (Char >= TEXT("0") && Char <= TEXT("9"))
-			{
-				RetValue *= 10;
-				RetValue += FCString::Atoi(*Char);
-			}
-			else
-			{
-				if (Char != TEXT(" "))
-				{
-					break;
-				}
-			}
-		}
+	//		if (Char >= TEXT("0") && Char <= TEXT("9"))
+	//		{
+	//			RetValue *= 10;
+	//			RetValue += FCString::Atoi(*Char);
+	//		}
+	//		else
+	//		{
+	//			if (Char != TEXT(" "))
+	//			{
+	//				break;
+	//			}
+	//		}
+	//	}
 
-		return RetValue;
-	}
+	//	return RetValue;
+	//}
 
-	FString GrabChar(FString* pStr)
-	{
-		FString GrabChar;
-		if (pStr->Len())
-		{
-			do
-			{
-				GrabChar = pStr->Left(1);
-				*pStr = pStr->Mid(1);
-			} while (GrabChar == TEXT(" "));
-		}
-		else
-		{
-			GrabChar = TEXT("");
-		}
+	//FString GrabChar(FString* pStr)
+	//{
+	//	FString GrabChar;
+	//	if (pStr->Len())
+	//	{
+	//		do
+	//		{
+	//			GrabChar = pStr->Left(1);
+	//			*pStr = pStr->Mid(1);
+	//		} while (GrabChar == TEXT(" "));
+	//	}
+	//	else
+	//	{
+	//		GrabChar = TEXT("");
+	//	}
 
-		return GrabChar;
-	}
+	//	return GrabChar;
+	//}
 
+	/*
 	bool SubEval(FString* pStr, float* pResult, int32 Prec)
 	{
 		FString c;
@@ -3064,8 +3078,8 @@ namespace UE4Math
 		*pResult = V;
 		return 1;
 	}
-
-	bool FMath::Eval(FString Str, float& OutValue)
+	
+	bool FMath::Eval(std::string Str, float& OutValue)
 	{
 		bool bResult = true;
 
@@ -3085,7 +3099,7 @@ namespace UE4Math
 
 		if (Brackets != 0)
 		{
-			UE_LOG(LogUnrealMath, Log, TEXT("Expression Error : Mismatched brackets"));
+			//UE_LOG(LogUnrealMath, Log, TEXT("Expression Error : Mismatched brackets"));
 			bResult = false;
 		}
 
@@ -3093,14 +3107,14 @@ namespace UE4Math
 		{
 			if (!SubEval(&Str, &OutValue, 0))
 			{
-				UE_LOG(LogUnrealMath, Log, TEXT("Expression Error : Error in expression"));
+				//UE_LOG(LogUnrealMath, Log, TEXT("Expression Error : Error in expression"));
 				bResult = false;
 			}
 		}
 
 		return bResult;
 	}
-
+	*/
 	void FMath::WindRelativeAnglesDegrees(float InAngle0, float& InOutAngle1)
 	{
 		const float Diff = InAngle0 - InOutAngle1;
@@ -3183,15 +3197,15 @@ namespace UE4Math
 		OutCart.Y = InPolar.X * Sin(InPolar.Y);
 	}
 
-	bool FRandomStream::ExportTextItem(FString& ValueStr, FRandomStream const& DefaultValue, class UObject* Parent, int32 PortFlags, class UObject* ExportRootScope) const
-	{
-		if (0 != (PortFlags & EPropertyPortFlags::PPF_ExportCpp))
-		{
-			ValueStr += FString::Printf(TEXT("FRandomStream(%i)"), DefaultValue.GetInitialSeed());
-			return true;
-		}
-		return false;
-	}
+	//bool FRandomStream::ExportTextItem(FString& ValueStr, FRandomStream const& DefaultValue, class UObject* Parent, int32 PortFlags, class UObject* ExportRootScope) const
+	//{
+	//	if (0 != (PortFlags & EPropertyPortFlags::PPF_ExportCpp))
+	//	{
+	//		ValueStr += FString::Printf(TEXT("FRandomStream(%i)"), DefaultValue.GetInitialSeed());
+	//		return true;
+	//	}
+	//	return false;
+	//}
 
 	// Implementation of 1D, 2D and 3D Perlin noise based on Ken Perlin's improved version https://mrl.nyu.edu/~perlin/noise/
 	// (See Random3.tps for additional third party software info.)
@@ -3216,7 +3230,7 @@ namespace UE4Math
 
 		// Gradient functions for 1D, 2D and 3D Perlin noise
 
-		FORCEINLINE float Grad1(int32 Hash, float X)
+		inline float Grad1(int32 Hash, float X)
 		{
 			// Slicing Perlin's 3D improved noise would give us only scales of -1, 0 and 1; this looks pretty bad so let's use a different sampling
 			static const float Grad1Scales[16] = { -8 / 8, -7 / 8., -6 / 8., -5 / 8., -4 / 8., -3 / 8., -2 / 8., -1 / 8., 1 / 8., 2 / 8., 3 / 8., 4 / 8., 5 / 8., 6 / 8., 7 / 8., 8 / 8 };
@@ -3224,7 +3238,7 @@ namespace UE4Math
 		}
 
 		// Note: If you change the Grad2 or Grad3 functions, check that you don't change the range of the resulting noise as well; it should be (within floating point error) in the range of (-1, 1)
-		FORCEINLINE float Grad2(int32 Hash, float X, float Y)
+		inline float Grad2(int32 Hash, float X, float Y)
 		{
 			// corners and major axes (similar to the z=0 projection of the cube-edge-midpoint sampling from improved Perlin noise)
 			switch (Hash & 7)
@@ -3242,7 +3256,7 @@ namespace UE4Math
 			}
 		}
 
-		FORCEINLINE float Grad3(int32 Hash, float X, float Y, float Z)
+		inline float Grad3(int32 Hash, float X, float Y, float Z)
 		{
 			switch (Hash & 15)
 			{
@@ -3270,7 +3284,7 @@ namespace UE4Math
 		}
 
 		// Curve w/ second derivative vanishing at 0 and 1, from Perlin's improved noise paper
-		FORCEINLINE float SmoothCurve(float X)
+		inline float SmoothCurve(float X)
 		{
 			return X * X * X * (X * (X * 6.0 - 15.0) + 10.0);
 		}

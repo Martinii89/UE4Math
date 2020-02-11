@@ -22,6 +22,9 @@
     <Filter Include="Misc">
       <UniqueIdentifier>{4f544844-f717-4181-b36a-85fa4d4ca00a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{66e4c831-7153-4198-bba4-8feae9f18b56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UE4-Math.cpp">
@@ -108,6 +111,15 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Math\Box.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\InterpCurvePoint.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\TwoVectors.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IntRect.h">
       <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>

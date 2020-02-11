@@ -431,14 +431,14 @@ namespace UE4Math
 	}
 
 
-	inline FVector4::FVector4(const FLinearColor& InColor)
-		: X(InColor.R)
-		, Y(InColor.G)
-		, Z(InColor.B)
-		, W(InColor.A)
-	{
-		DiagnosticCheckNaN();
-	}
+	//inline FVector4::FVector4(const FLinearColor& InColor)
+	//	: X(InColor.R)
+	//	, Y(InColor.G)
+	//	, Z(InColor.B)
+	//	, W(InColor.A)
+	//{
+	//	DiagnosticCheckNaN();
+	//}
 
 
 	inline FVector4::FVector4(float InX, float InY, float InZ, float InW)

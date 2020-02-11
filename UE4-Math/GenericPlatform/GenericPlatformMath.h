@@ -191,7 +191,7 @@ namespace UE4Math
 		* This is forced to *NOT* inline so that divisions by constant Y does not get optimized in to an inverse scalar multiply,
 		* which is not consistent with the intent nor with the vectorized version.
 		*/
-		static inline float Fmod(float X, float Y);
+		static inline float Fmod(float X, float Y) { return fmodf(X, Y); };
 
 		static inline float Sin(float Value) { return sinf(Value); }
 		static inline float Asin(float Value) { return asinf((Value < -1.f) ? -1.f : ((Value < 1.f) ? Value : 1.f)); }
@@ -200,7 +200,7 @@ namespace UE4Math
 		static inline float Acos(float Value) { return acosf((Value < -1.f) ? -1.f : ((Value < 1.f) ? Value : 1.f)); }
 		static inline float Tan(float Value) { return tanf(Value); }
 		static inline float Atan(float Value) { return atanf(Value); }
-		static float Atan2(float Y, float X);
+		static float Atan2(float Y, float X) { return atan2f(Y, X); };
 		static inline float Sqrt(float Value) { return sqrtf(Value); }
 		static inline float Pow(float A, float B) { return powf(A, B); }
 

@@ -156,7 +156,9 @@
     <ClInclude Include="Math\Axis.h" />
     <ClInclude Include="Math\Box.h" />
     <ClInclude Include="Math\Color.h" />
+    <ClInclude Include="Math\InterpCurvePoint.h" />
     <ClInclude Include="Math\IntPoint.h" />
+    <ClInclude Include="Math\IntRect.h" />
     <ClInclude Include="Math\IntVector.h" />
     <ClInclude Include="Math\Matrix.h" />
     <ClInclude Include="Math\NumericLimits.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Math\RotationMatrix.h" />
     <ClInclude Include="Math\RotationTranslationMatrix.h" />
     <ClInclude Include="Math\Rotator.h" />
+    <ClInclude Include="Math\TwoVectors.h" />
     <ClInclude Include="Math\UnrealMath.h" />
     <ClInclude Include="Math\UnrealMathUtility.h" />
     <ClInclude Include="Math\UnrealMathVectorCommon.h" />
